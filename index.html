@@ -1,1 +1,280 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SeguiMais | Cresça de forma orgânica</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0b1020;
+      color: #fff;
+    }
+    header {
+      padding: 22px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      border-bottom: 1px solid #282d46;
+      flex-wrap: wrap;
+    }
+    .logo { font-size: 27px; font-weight: bold; }
+    .logo span { color: #d946ef; }
+    nav a {
+      color: #ddd8f4;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+    .hero {
+      padding: 70px 7%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 35px;
+      background: radial-gradient(ellipse at 85% 20%, #492080 0, transparent 45%);
+    }
+    .hero-text { max-width: 650px; }
+    .tag { color: #d8a1ff; font-weight: bold; letter-spacing: 2px; }
+    h1 { font-size: clamp(38px, 6vw, 65px); margin: 18px 0; }
+    h1 span { color: #d946ef; }
+    p { color: #b8bfd8; line-height: 1.7; }
+    .btn {
+      display: inline-block;
+      background: linear-gradient(90deg, #7c3aed, #db2777);
+      padding: 14px 22px;
+      border-radius: 10px;
+      color: white;
+      text-decoration: none;
+      border: 0;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 12px;
+    }
+    .hero-card {
+      min-width: 230px;
+      padding: 30px;
+      border: 1px solid #51416e;
+      background: #17172e;
+      border-radius: 22px;
+      text-align: center;
+    }
+    .hero-card .symbol { font-size: 75px; color: #e879f9; }
+    section.content { padding: 45px 7%; }
+    h2 { font-size: 30px; }
+    .muted { color: #aeb6d1; }
+    .profiles, .plans {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      margin-top: 25px;
+    }
+    .card {
+      padding: 22px;
+      border-radius: 16px;
+      background: #141a2e;
+      border: 1px solid #2a3150;
+    }
+    .avatar {
+      width: 48px; height: 48px; border-radius: 14px;
+      display: grid; place-items: center;
+      background: linear-gradient(135deg, #7c3aed, #db2777);
+      font-weight: bold; font-size: 22px;
+    }
+    .card h3 { margin-bottom: 4px; }
+    .card .btn { width: 100%; text-align: center; }
+    form {
+      max-width: 650px;
+      background: #141a2e;
+      padding: 25px;
+      border-radius: 16px;
+      border: 1px solid #2a3150;
+    }
+    label { display: block; margin-top: 14px; color: #e4e7f4; }
+    input, select, textarea {
+      width: 100%; margin-top: 7px; padding: 12px;
+      border: 1px solid #343b5b; border-radius: 9px;
+      background: #0b1020; color: white; font: inherit;
+    }
+    .price { font-size: 30px; font-weight: bold; }
+    footer {
+      padding: 30px 7%; border-top: 1px solid #282d46;
+      color: #aeb6d1; text-align: center;
+    }
+    @media(max-width: 650px) {
+      .hero { padding-top: 45px; flex-direction: column; align-items: stretch; }
+      nav { width: 100%; }
+      nav a { display: inline-block; margin: 5px 8px 5px 0; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Segui<span>Mais</span> ✦</div>
+    <nav>
+      <a href="#inicio">Início</a>
+      <a href="#perfis">Descobrir</a>
+      <a href="#divulgar">Divulgar perfil</a>
+      <a href="#planos">Planos</a>
+    </nav>
+  </header>
 
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-text">
+        <div class="tag">CRESCIMENTO ORGÂNICO</div>
+        <h1>Seu conteúdo merece <span>ser descoberto.</span></h1>
+        <p>Divulgue seu Instagram, conheça novos criadores e encontre pessoas interessadas no seu conteúdo. Sem bots e sem compartilhar sua senha.</p>
+        <a class="btn" href="#divulgar">Divulgar meu perfil →</a>
+      </div>
+      <div class="hero-card">
+        <div class="symbol">◎</div>
+        <h3>Conexões reais</h3>
+        <p>Descubra novos perfis e amplie sua comunidade com divulgação legítima.</p>
+      </div>
+    </section>
+
+    <section class="content" id="perfis">
+      <h2>Descubra criadores</h2>
+      <p class="muted">Estes são perfis de exemplo. Use a busca para encontrar uma categoria.</p>
+      <input id="busca" type="search" placeholder="Buscar nome, usuário ou categoria..." aria-label="Buscar perfis">
+      <div class="profiles" id="listaPerfis"></div>
+    </section>
+
+    <section class="content" id="divulgar">
+      <h2>Divulgue seu perfil</h2>
+      <p class="muted">Cadastre os dados públicos do seu perfil para aparecer nesta lista neste navegador.</p>
+      <form id="formPerfil">
+        <label>Nome de exibição
+          <input id="nome" required maxlength="40" placeholder="Ex.: Ana Criativa">
+        </label>
+        <label>Usuário do Instagram
+          <input id="usuario" required maxlength="30" placeholder="@seuusuario">
+        </label>
+        <label>Link público do Instagram
+          <input id="link" type="url" required placeholder="https://www.instagram.com/seuusuario/">
+        </label>
+        <label>Categoria
+          <select id="categoria" required>
+            <option value="">Escolha uma categoria</option>
+            <option>Moda</option><option>Beleza</option><option>Humor</option>
+            <option>Games</option><option>Comida</option><option>Rotina</option>
+            <option>Negócios</option><option>Outros</option>
+          </select>
+        </label>
+        <label>Sobre seu conteúdo
+          <textarea id="bio" rows="3" maxlength="140" placeholder="O que você publica?"></textarea>
+        </label>
+        <button class="btn" type="submit">Publicar perfil</button>
+        <p id="mensagem" role="status"></p>
+      </form>
+    </section>
+
+    <section class="content" id="planos">
+      <h2>Planos SeguiMais</h2>
+      <p class="muted">Os valores são exemplos. Nenhum pagamento está ativo nesta versão.</p>
+      <div class="plans">
+        <article class="card">
+          <h3>Grátis</h3><div class="price">R$ 0</div>
+          <p>Publicar perfil e descobrir criadores.</p>
+          <a class="btn" href="#divulgar">Começar grátis</a>
+        </article>
+        <article class="card">
+          <h3>Destaque</h3><div class="price">R$ 19,90</div>
+          <p>Proposta de maior visibilidade no diretório.</p>
+          <button class="btn interesse" type="button">Tenho interesse</button>
+        </article>
+        <article class="card">
+          <h3>Pro</h3><div class="price">R$ 39,90</div>
+          <p>Proposta de divulgação ampliada e recursos extras.</p>
+          <button class="btn interesse" type="button">Tenho interesse</button>
+        </article>
+      </div>
+      <p class="muted">Não vendemos seguidores garantidos nem automatizamos curtidas ou ações de seguir.</p>
+    </section>
+  </main>
+
+  <footer>
+    <strong>SeguiMais</strong>
+    <p>Plataforma independente de divulgação. Não afiliada ao Instagram ou à Meta.</p>
+    <p>Esta versão salva os perfis somente no navegador utilizado.</p>
+  </footer>
+
+  <script>
+    const exemplos = [
+      {nome:"Ana Criativa",usuario:"@ana.criativa",link:"https://www.instagram.com/",categoria:"Moda",bio:"Looks e inspirações para o dia a dia."},
+      {nome:"Cantinho da Beleza",usuario:"@cantinhodabeleza",link:"https://www.instagram.com/",categoria:"Beleza",bio:"Dicas de beleza e autocuidado."},
+      {nome:"Risada Todo Dia",usuario:"@risadatododia",link:"https://www.instagram.com/",categoria:"Humor",bio:"Conteúdo leve para alegrar o dia."},
+      {nome:"Cozinha da Ju",usuario:"@cozinhadaju",link:"https://www.instagram.com/",categoria:"Comida",bio:"Receitas simples e saborosas."},
+      {nome:"Rotina em Equilíbrio",usuario:"@rotinaequilibrio",link:"https://www.instagram.com/",categoria:"Rotina",bio:"Organização e hábitos saudáveis."},
+      {nome:"Level Up",usuario:"@levelup.games",link:"https://www.instagram.com/",categoria:"Games",bio:"Jogos, dicas e novidades."}
+    ];
+    const $ = id => document.getElementById(id);
+    function linkInstagram(valor) {
+      try {
+        const u = new URL(valor);
+        if (u.protocol === "https:" && ["instagram.com","www.instagram.com"].includes(u.hostname)) return u.href;
+      } catch (e) {}
+      return null;
+    }
+    function todosPerfis() {
+      try { return [...JSON.parse(localStorage.getItem("seguimaisPerfis") || "[]"), ...exemplos]; }
+      catch (e) { return exemplos; }
+    }
+    function renderizar() {
+      const termo = $("busca").value.toLowerCase().trim();
+      const lista = $("listaPerfis");
+      lista.replaceChildren();
+      const filtrados = todosPerfis().filter(p => (p.nome+" "+p.usuario+" "+p.categoria+" "+p.bio).toLowerCase().includes(termo));
+      if (!filtrados.length) {
+        const aviso = document.createElement("p");
+        aviso.textContent = "Nenhum perfil encontrado. Tente outra busca.";
+        lista.append(aviso); return;
+      }
+      filtrados.forEach(p => {
+        const card = document.createElement("article"); card.className = "card";
+        const avatar = document.createElement("div"); avatar.className = "avatar";
+        avatar.textContent = (p.nome || "S").charAt(0).toUpperCase();
+        const h = document.createElement("h3"); h.textContent = p.nome;
+        const user = document.createElement("p"); user.textContent = p.usuario;
+        const categoria = document.createElement("p"); categoria.textContent = p.categoria;
+        const bio = document.createElement("p"); bio.textContent = p.bio || "";
+        const a = document.createElement("a"); a.className = "btn";
+        a.textContent = "Ver perfil no Instagram ↗";
+        a.href = linkInstagram(p.link) || "https://www.instagram.com/";
+        a.target = "_blank"; a.rel = "noopener noreferrer";
+        card.append(avatar,h,user,categoria,bio,a); lista.append(card);
+      });
+    }
+    $("busca").addEventListener("input", renderizar);
+    $("formPerfil").addEventListener("submit", event => {
+      event.preventDefault();
+      const link = linkInstagram($("link").value.trim());
+      if (!link) {
+        $("mensagem").textContent = "Use um link válido do Instagram começando com https://www.instagram.com/";
+        return;
+      }
+      let usuario = $("usuario").value.trim();
+      if (!usuario.startsWith("@")) usuario = "@"+usuario;
+      const perfil = {nome:$("nome").value.trim(),usuario,link,categoria:$("categoria").value,bio:$("bio").value.trim()};
+      try {
+        const salvos = JSON.parse(localStorage.getItem("seguimaisPerfis") || "[]");
+        salvos.unshift(perfil);
+        localStorage.setItem("seguimaisPerfis", JSON.stringify(salvos));
+        $("mensagem").textContent = "Perfil publicado neste navegador! Para compartilhar com todos, será necessário conectar um banco de dados.";
+        $("formPerfil").reset(); renderizar();
+      } catch (e) {
+        $("mensagem").textContent = "Não foi possível salvar neste navegador.";
+      }
+    });
+    document.querySelectorAll(".interesse").forEach(botao => botao.addEventListener("click", () => {
+      alert("Os pagamentos ainda não estão configurados. Nenhuma cobrança será realizada.");
+    }));
+    renderizar();
+  </script>
+</body>
+</html>
+```
